@@ -2,11 +2,11 @@
 
 {% block body %}
     <!-- banner -->
-    <div class="banner">
+    <div class="banner" style="background-image: url({{ asset('images/1-1.jpg') }}); min-height: 0px; padding-bottom: 32px">
         <div class="container">
             <div class="header">
                 <div class="logo">
-                    <h1><a href="/">Оригинальные кружки <span>На заказ</span></a></h1>
+                    <h1><a href="{{ url('homepage') }}">Оригинальные кружки <span>На заказ</span></a></h1>
                 </div>
                 <div class="mail-phone">
                     <ul>
@@ -16,45 +16,40 @@
                 </div>
                 <div class="clearfix"> </div>
             </div>
-            <div class="banner-info">
-                <ul>
-                    <li class="active"><a href="{{ url('homepage') }}">Главная</a></li>
-                    <li><a href="#services" class="scroll hvr-radial-out">Услуги</a></li>
-                    <li><a href="{{ url('order') }}" class="hvr-radial-out">Заказать</a></li>
-                    <li><a href="#gallery" class="scroll hvr-radial-out">Галерея</a></li>
-                    <li><a href="#mail" class="scroll hvr-radial-out">Контакты</a></li>
-                </ul>
-            </div>
         </div>
     </div>
     <!-- //banner -->
+    <div class="container">
+        <ol class="breadcrumb" style="margin-bottom: 0px">
+            <li><a href="{{ url('homepage') }}">Главная</a></li>
+            <li class="active">Заявка</li>
+        </ol>
+    </div>
     <!-- order -->
     <div class="mail" id="mail">
         <div class="container">
-            <h3>Заявка</h3>
-            <p class="qui"><span>Quis autem vel eum iure reprehenderit qui in ea voluptate.</span></p>
+            <h3>Оформить заказ</h3>
+            <p class="qui"><span>При заказе через сайт скидка <strong>5%</strong></span></p>
             <div class="mail-grids">
-                <div class="col-md-4 mail-grid-left">
-                    <h4>Contact Info</h4>
-                    <ul>
-                        <li><i class="glyphicon glyphicon-home" aria-hidden="true"></i>Visit Us<span>20, 2 Elizabeth ST, Melbourne, Victoria 3000</span></li>
-                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Mail Us<a href="mailto:info@example">info@example</a></li>
-                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Call Us<span>+(100) 0123 423 585</span></li>
-                        <li><i class="glyphicon glyphicon-time" aria-hidden="true"></i>Working Time<span>Mon-Sat: 10:00 AM to 5:00 PM</span></li>
-                    </ul>
-                </div>
-                <div class="col-md-8 mail-grid-right">
-                    <form action="#" method="post">
-                        <h5>Имя*</h5>
-                        <input type="text" name="Name" required="">
-                        <h6>Email*</h6>
-                        <input type="email" name="Email" required="">
-                        <h6>Сообщение*</h6>
-                        <textarea name="Message"required=""></textarea>
-                        <input type="submit" value="Отправить сообщение">
-                    </form>
-                </div>
-                <div class="clearfix"> </div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Вид изделия</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Изображение</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Отправить</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -63,10 +58,10 @@
     <div class="footer">
         <div class="container">
             <ul class="footer-nav">
-                <li><a href="#services" class="scroll">Услуги</a></li>
-                <li><a href="{{ url('order') }}">Заказать</a></li>
-                <li><a href="#gallery" class="scroll">Галерея</a></li>
-                <li><a href="#mail" class="scroll">Контакты</a></li>
+                <li><a href="{{ url('homepage') }}">Главная</a></li>
+                <li><a href="{{ url('homepage') }}#services">Услуги</a></li>
+                <li><a href="{{ url('homepage') }}#gallery">Галерея</a></li>
+                <li><a href="{{ url('homepage') }}#mail">Контакты</a></li>
             </ul>
             <ul class="social-nav model-3d-0 footer-social">
                 <li><a href="#" class="facebook">

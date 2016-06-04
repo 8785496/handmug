@@ -20,7 +20,7 @@
                 <ul>
                     <li class="active"><a href="{{ url('homepage') }}">Главная</a></li>
                     <li><a href="#services" class="scroll hvr-radial-out">Услуги</a></li>
-                    <li><a href="{{ url('order') }}" class="hvr-radial-out">Заказать</a></li>
+                    <li><a href="{{ url('order') }}" class="hvr-radial-out" style="background: rgba(249, 132, 229, 0.4)">Заказать</a></li>
                     <li><a href="#gallery" class="scroll hvr-radial-out">Галерея</a></li>
                     <li><a href="#mail" class="scroll hvr-radial-out">Контакты</a></li>
                 </ul>
@@ -200,19 +200,19 @@
                     <div class="clearfix"> </div>
                     <div class="gallery-grids-right1">
                         <div class="gallery-grid">
-                            <img src='images/13.jpg' data-big-src='images/13.jpg' alt=" " />
+                            <img src="{{ asset('images/13.jpg') }}" data-big-src="{{ asset('images/13.jpg') }}" alt=" " />
                             <p  style='opacity:0;display:none'>Quis autem vel eum iure reprehenderit qui in ea voluptate.</p>
                         </div>
                     </div>
                     <div class="col-md-6 gallery-grids-right">
                         <div class="gallery-grid">
-                            <img src='images/15.jpg' data-big-src='images/15-.jpg' alt=" " />
+                            <img src='{{ asset('images/15.jpg') }}' data-big-src='{{ asset('images/15-.jpg') }}' alt=" " />
                             <p  style='opacity:0;display:none'>Quis autem vel eum iure reprehenderit qui in ea voluptate.</p>
                         </div>
                     </div>
                     <div class="col-md-6 gallery-grids-right">
                         <div class="gallery-grid">
-                            <img src='images/16.jpg' data-big-src='images/16-.jpg' alt=" " />
+                            <img src='{{ asset('images/16.jpg') }}' data-big-src='{{ asset('images/16-.jpg') }}' alt=" " />
                             <p  style='opacity:0;display:none'>Quis autem vel eum iure reprehenderit qui in ea voluptate.</p>
                         </div>
                     </div>
@@ -239,14 +239,14 @@
                     </ul>
                 </div>
                 <div class="col-md-8 mail-grid-right">
-                    <form action="#" method="post">
+                    <form action="{{ url('sendMail') }}" method="post" id="form-mail">
                         <h5>Имя*</h5>
-                        <input type="text" name="Name" required="">
+                        <input type="text" name="name" required="">
                         <h6>Email*</h6>
-                        <input type="email" name="Email" required="">
+                        <input type="email" name="email" required="">
                         <h6>Сообщение*</h6>
-                        <textarea name="Message"required=""></textarea>
-                        <input type="submit" value="Отправить сообщение">
+                        <textarea name="message"required=""></textarea>
+                        <input type="submit" value="Отправить сообщение" id="send"><span id="success" style="margin-left: 10px"></span>
                     </form>
                 </div>
                 <div class="clearfix"> </div>
@@ -337,4 +337,36 @@
         //init Gallery
         $('.gallery').easyGallery();
     </script>
+    {#send message#}
+    <script>
+        $('#form-mail').submit(function(e){
+            $.ajax({
+                data: $(this).serialize(),
+                beforeSend: function () {
+                    //$('#success').html('<div class="col-md-12 text-center"><img src="images/spinner1.gif" alt="spinner" /></div>');
+                    $('#send').prop('disabled', true);
+                },
+                success: function (response) {
+                    if (response.status == 1) {
+                        $('#success').html('Ваш e-mail успешно отправлен');
+                        //window.location.reload();
+                    } else {
+                        $('#success').html('E-mail не был отправлен. Пожалуйста, попробуйте еще раз!');
+                        $('#send').prop('disabled', false);
+                    }
+                },
+                error: function (e) {
+                    $('#success').html('Не удалось отправить e-mail. Пожалуйста, попробуйте позже!');
+                    $('#send').prop('disabled', false);
+                },
+                complete: function (done) {
+                    console.log('Finished');
+                },
+                type: 'POST',
+                url: '{{ url('sendMail') }}',
+            });
+            e.preventDefault();
+        });
+    </script>
+    {#//send message#}
 {% endblock %}
