@@ -240,11 +240,11 @@
                 </div>
                 <div class="col-md-8 mail-grid-right">
                     <form action="{{ url('sendMail') }}" method="post" id="form-mail">
-                        <h5>Имя*</h5>
+                        <h5>Имя *</h5>
                         <input type="text" name="name" required="">
-                        <h6>Email*</h6>
+                        <h6>Email *</h6>
                         <input type="email" name="email" required="">
-                        <h6>Сообщение*</h6>
+                        <h6>Сообщение *</h6>
                         <textarea name="message"required=""></textarea>
                         <input type="submit" value="Отправить сообщение" id="send"><span id="success" style="margin-left: 10px"></span>
                     </form>
@@ -343,20 +343,21 @@
             $.ajax({
                 data: $(this).serialize(),
                 beforeSend: function () {
-                    //$('#success').html('<div class="col-md-12 text-center"><img src="images/spinner1.gif" alt="spinner" /></div>');
                     $('#send').prop('disabled', true);
                 },
                 success: function (response) {
                     if (response.status == 1) {
-                        $('#success').html('Ваш e-mail успешно отправлен');
-                        //window.location.reload();
+                        $('#success').html('Ваше сообщение успешно отправлен.');
+                    } else if (response.status == 0) {
+                        $('#success').html(response.error);
+                        $('#send').prop('disabled', false);
                     } else {
-                        $('#success').html('E-mail не был отправлен. Пожалуйста, попробуйте еще раз!');
+                        $('#success').html('Сообщение не было отправлено. Пожалуйста, попробуйте еще раз!');
                         $('#send').prop('disabled', false);
                     }
                 },
                 error: function (e) {
-                    $('#success').html('Не удалось отправить e-mail. Пожалуйста, попробуйте позже!');
+                    $('#success').html('Не удалось отправить сообщение. Пожалуйста, попробуйте позже!');
                     $('#send').prop('disabled', false);
                 },
                 complete: function (done) {

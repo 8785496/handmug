@@ -66,3 +66,5 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+php_value date.timezone Asia/Novosibirsk
