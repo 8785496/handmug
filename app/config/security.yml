@@ -8,7 +8,7 @@ security:
             memory:
                 users:
                     admin:
-                        password: $2y$12$Kt.GhBYzzsHg5348D1cv0uyBmXD9Ihh4AkZvkY2nw5LfWK6/Zb0AG
+                        password: $2y$12$RKvmRZf2I42EMJHP9Ns1neLmNN5Qlp1hw1Z1kNJcvAovzWj/Fm4ba
                         roles: 'ROLE_ADMIN'
 
     firewalls:

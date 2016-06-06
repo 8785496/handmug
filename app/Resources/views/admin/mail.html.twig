@@ -1,0 +1,27 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block container %}
+<table class="table">
+    <caption>{{ caption }}</caption>
+    <thead>
+    <tr>
+        <th>ID</th><th>Дата</th><th>Email</th><th>Имя</th><th>Сообщение</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for mail in mails %}
+        <tr>
+            <td>{{ mail.id }}</td>
+            <td>{{ mail.time|date("H:i:s") }}</td>
+            <td>{{ mail.email }}</td>
+            <td>{{ mail.name }}</td>
+            {% if mail.body|length > 20 %}
+                <td title="{{ mail.body }}">{{ mail.body[:17] }}...</td>
+            {% else %}
+                <td>{{ mail.body }}</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

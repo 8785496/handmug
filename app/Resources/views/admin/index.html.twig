@@ -1,19 +1,29 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block title %}
-Админ панель
-{% endblock %}
-
-{% block body %}
-    <div id="wrapper">
-        <div id="container">
-            Привет, Админ!
-        </div>
-    </div>
-{% endblock %}
-
-{% block stylesheets %}
-<style>
-
-</style>
+{% block container %}
+<table class="table">
+    <caption>{{ caption }}</caption>
+    <thead>
+    <tr>
+        <th>ID</th><th>IP</th><th>URL</th><th>ОС, браузер</th><th>Referer</th><th>Время</th><th>Местоположение</th><th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for visitor in visitors %}
+        <tr>
+            <td>{{ visitor.id }}</td>
+            <td>{{ visitor.ip }}</td>
+            <td>{{ visitor.uri }}</td>
+            <td>{{ visitor.agent|agent }}</td>
+            {% if visitor.referer|length > 20 %}
+                <td title="{{ visitor.referer }}">{{ visitor.referer[:17] }}...</td>
+            {% else %}
+                <td>{{ visitor.referer }}</td>
+            {% endif %}
+            <td>{{ visitor.time|date("H:i:s") }}</td>
+            <td>{{ visitor.location }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
