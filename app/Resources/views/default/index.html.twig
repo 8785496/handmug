@@ -4,18 +4,7 @@
     <!-- banner -->
     <div class="banner">
         <div class="container">
-            <div class="header">
-                <div class="logo">
-                    <h1><a href="{{ url('homepage') }}">Оригинальные кружки <span>На заказ</span></a></h1>
-                </div>
-                <div class="mail-phone">
-                    <ul>
-                        <li><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>+1234 568 695</li>
-                        <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">info@example.com</a></li>
-                    </ul>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
+            {% include 'default/header.html.twig' %}
             <div class="banner-info">
                 <ul>
                     <li class="active"><a href="{{ url('homepage') }}">Главная</a></li>
@@ -61,9 +50,26 @@
             <p class="qui"><span>Quis autem vel eum iure reprehenderit qui in ea voluptate.</span></p>
             <div class="services-grids">
                 <div class="col-md-6 services-grid">
+
                     <div class="services-grid1">
                         <div class="col-md-8 services-grid-left">
-                            <h4>repreh qui in ea voluptate</h4>
+                            <h4>кружки с неведомым узором:)</h4>
+                            <p>Itaque earum rerum hic tenetur a sapiente
+                                delectus, ut aut reiciendis voluptatibus maiores alias consequatur
+                                aut perferendis doloribus asperiores repellat.</p>
+                        </div>
+                        <div class="col-md-4 services-grid-right">
+                            <div class="services-grid-right-grid hvr-radial-out">
+                                <span class="fa fa-coffee" aria-hidden="true" style="position: relative"></span>
+                                {#<span class="glyphicon glyphicon-grain" aria-hidden="true"></span>#}
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="services-grid1">
+                        <div class="col-md-8 services-grid-left">
+                            <h4>игрушки из цветов</h4>
                             <p>Itaque earum rerum hic tenetur a sapiente
                                 delectus, ut aut reiciendis voluptatibus maiores alias consequatur
                                 aut perferendis doloribus asperiores repellat.</p>
@@ -75,50 +81,25 @@
                         </div>
                         <div class="clearfix"> </div>
                     </div>
-                    <div class="services-grid1">
-                        <div class="col-md-8 services-grid-left">
-                            <h4>aut perferendis doloribus</h4>
-                            <p>Itaque earum rerum hic tenetur a sapiente
-                                delectus, ut aut reiciendis voluptatibus maiores alias consequatur
-                                aut perferendis doloribus asperiores repellat.</p>
-                        </div>
-                        <div class="col-md-4 services-grid-right">
-                            <div class="services-grid-right-grid hvr-radial-out">
-                                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="services-grid1">
-                        <div class="col-md-8 services-grid-left">
-                            <h4>maiores alias consequatur</h4>
-                            <p>Itaque earum rerum hic tenetur a sapiente
-                                delectus, ut aut reiciendis voluptatibus maiores alias consequatur
-                                aut perferendis doloribus asperiores repellat.</p>
-                        </div>
-                        <div class="col-md-4 services-grid-right">
-                            <div class="services-grid-right-grid hvr-radial-out">
-                                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
+
                 </div>
                 <div class="col-md-6 services-grid">
+
                     <div class="services-grid1">
                         <div class="col-md-4 services-grid-right">
                             <div class="services-grid-right-grid hvr-radial-out">
-                                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
                             </div>
                         </div>
                         <div class="col-md-8 services-grid-left services-grid-left1">
-                            <h4>voluptatibus maiores alias</h4>
+                            <h4>букеты из мягких игрушек</h4>
                             <p>Itaque earum rerum hic tenetur a sapiente
                                 delectus, ut aut reiciendis voluptatibus maiores alias consequatur
                                 aut perferendis doloribus asperiores repellat.</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
+
                     <div class="services-grid1">
                         <div class="col-md-4 services-grid-right">
                             <div class="services-grid-right-grid hvr-radial-out">
@@ -126,25 +107,12 @@
                             </div>
                         </div>
                         <div class="col-md-8 services-grid-left services-grid-left1">
-                            <h4>dut aut reiciendis maiores</h4>
+                            <h4>поделки из полимерной глины</h4>
                             <p>Itaque earum rerum hic tenetur a sapiente
                                 delectus, ut aut reiciendis voluptatibus maiores alias consequatur
                                 aut perferendis doloribus asperiores repellat.</p>
                         </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="services-grid1">
-                        <div class="col-md-4 services-grid-right">
-                            <div class="services-grid-right-grid hvr-radial-out">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-8 services-grid-left services-grid-left1">
-                            <h4>doloribus volupta maiores</h4>
-                            <p>Itaque earum rerum hic tenetur a sapiente
-                                delectus, ut aut reiciendis voluptatibus maiores alias consequatur
-                                aut perferendis doloribus asperiores repellat.</p>
-                        </div>
+
                         <div class="clearfix"> </div>
                     </div>
                 </div>
@@ -232,10 +200,10 @@
                 <div class="col-md-4 mail-grid-left">
                     <h4>Contact Info</h4>
                     <ul>
-                        <li><i class="glyphicon glyphicon-home" aria-hidden="true"></i>Visit Us<span>20, 2 Elizabeth ST, Melbourne, Victoria 3000</span></li>
-                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Mail Us<a href="mailto:info@example">info@example</a></li>
-                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Call Us<span>+(100) 0123 423 585</span></li>
-                        <li><i class="glyphicon glyphicon-time" aria-hidden="true"></i>Working Time<span>Mon-Sat: 10:00 AM to 5:00 PM</span></li>
+                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>E-mail<a href="mailto:mail@handmug.ru">mail@handmug.ru</a></li>
+                        <li><i class="glyphicon glyphicon-home" aria-hidden="true"></i>WhatsApp<span>+7 953 793 33 44</span></li>
+                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Телефон<span>+7 953 793 33 44</span></li>
+                        <li><i class="glyphicon glyphicon-time" aria-hidden="true"></i>Время работы<span>Пн-Пт: 9:00 - 20:00 (МСК+4)</span></li>
                     </ul>
                 </div>
                 <div class="col-md-8 mail-grid-right">
@@ -254,39 +222,15 @@
         </div>
     </div>
     <!-- //mail -->
-    <!-- footer -->
-    <div class="footer">
-        <div class="container">
-            <ul class="footer-nav">
-                <li><a href="#services" class="scroll">Услуги</a></li>
-                <li><a href="{{ url('order') }}">Заказать</a></li>
-                <li><a href="#gallery" class="scroll">Галерея</a></li>
-                <li><a href="#mail" class="scroll">Контакты</a></li>
-            </ul>
-            <ul class="social-nav model-3d-0 footer-social">
-                <li><a href="#" class="facebook">
-                        <div class="front"><i class="facebook-sub"></i></div>
-                        <div class="back"><i class="facebook-sub"></i></div></a></li>
-                <li><a href="#" class="twitter">
-                        <div class="front"><i class="twitter-sub"></i></div>
-                        <div class="back"><i class="twitter-sub"></i></div></a></li>
-                <li><a href="#" class="instagram">
-                        <div class="front"><i class="instagram-sub"></i></div>
-                        <div class="back"><i class="instagram-sub"></i></div></a></li>
-                <li><a href="#" class="pinterest">
-                        <div class="front"><i class="pinterest-sub"></i></div>
-                        <div class="back"><i class="pinterest-sub"></i></div></a></li>
-            </ul>
-            <h3><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i> 1234 Diamond Street MS, Suite 982, Melbourne<span><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+(100) 0123 423 585</span></h3>
-            <div class="mail-foot">
-                <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example">info@example</a>
-            </div>
-        </div>
-        <div class="copy-right">
-            <p>&copy; 2016 Handmug | Дизайн <a href="http://w3layouts.com">W3layouts</a></p>
-        </div>
-    </div>
-    <!-- //footer -->
+{% endblock %}
+
+{% block footernav %}
+    <ul class="footer-nav">
+        <li><a href="#services" class="scroll">Услуги</a></li>
+        <li><a href="{{ url('order') }}">Заказать</a></li>
+        <li><a href="#gallery" class="scroll">Галерея</a></li>
+        <li><a href="#mail" class="scroll">Контакты</a></li>
+    </ul>
 {% endblock %}
 
 {% block stylesheets %}
