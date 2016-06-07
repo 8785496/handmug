@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Entity\Email;
 use AppBundle\Entity\Visitor;
+use AppBundle\Entity\Request as Order;
 
 class DefaultController extends Controller
 {
@@ -38,9 +39,28 @@ class DefaultController extends Controller
      */
     public function sendOrderAction(Request $request)
     {
-        return new JsonResponse([
-            'data' => 123
-        ]);
+        $order = (new Order())
+            ->setName($request->request->get('name'))
+            ->setContact($request->request->get('contact'))
+            ->setType($request->request->get('type'))
+            ->setDescription($request->request->get('description'))
+            ->setIp($request->getClientIp())
+            ->setTime(new \DateTime());
+
+        $validator = $this->get('validator');
+        $errors = $validator->validate($order);
+        if (count($errors) > 0) {
+            return new JsonResponse([
+                'status' => 0,
+                'error' => $errors[0]->getMessage()
+            ]);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($order);
+        $em->flush();
+
+        return new JsonResponse(['status' => 1]);
     }
 
     /**

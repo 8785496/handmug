@@ -24,6 +24,15 @@ ul,label{
 body a:hover{
 	text-decoration:none;
 }
+.no-border-radius{
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.label-order{
+    font-weight: normal;
+    cursor: pointer;
+}
 .mail-phone ul li a,.video-grid-pos ul li a,.copy-right p a,.mail-foot a,.footer ul li a,input[type="submit"],.services-grid-right-grid span,.services-grid-left h4,.services-grid-right-grid{
 	transition:.5s ease-in;
 	-webkit-transition:.5s ease-in;

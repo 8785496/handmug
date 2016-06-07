@@ -14,7 +14,7 @@
             <td>{{ visitor.id }}</td>
             <td>{{ visitor.ip }}</td>
             <td>{{ visitor.uri }}</td>
-            <td>{{ visitor.agent|agent }}</td>
+            <td title="{{ visitor.agent }}">{{ visitor.agent|agent }}</td>
             {% if visitor.referer|length > 20 %}
                 <td title="{{ visitor.referer }}">{{ visitor.referer[:17] }}...</td>
             {% else %}

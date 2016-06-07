@@ -55,7 +55,17 @@ class AdminController extends Controller
      */
     public function orderAction(Request $request)
     {
-        return new Response('Страница в разработке.');
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Request');
+        $query = $repository->createQueryBuilder('o')
+            ->orderBy('o.id', 'DESC')
+            ->getQuery();
+
+        $orders = $query->getResult();
+
+        return $this->render('admin/order.html.twig', [
+            'caption' => 'Заявки с сайта',
+            'orders' => $orders
+        ]);
     }
 
     /**

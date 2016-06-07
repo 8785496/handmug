@@ -2,65 +2,95 @@
 
 {% block body %}
     <!-- banner -->
-    <div class="banner" style="background-image: url({{ asset('images/1-1.jpg') }}); min-height: 0px; padding-bottom: 32px">
+    <div class="banner" style="background-image: url({{ asset('images/1-1.jpg') }}); min-height: 0px; padding-bottom: 32px"
+         xmlns="http://www.w3.org/1999/html">
         <div class="container">
             {% include 'default/header.html.twig' %}
         </div>
     </div>
     <!-- //banner -->
     <div class="container">
-        <ol class="breadcrumb" style="margin-bottom: 0px">
-            <li><a href="{{ url('homepage') }}">Главная</a></li>
+        <ol class="breadcrumb no-border-radius" style="margin-bottom: 0px">
+            <li><i class="fa fa-home" aria-hidden="true"></i> <a href="{{ url('homepage') }}">Главная</a></li>
             <li class="active">Заявка</li>
         </ol>
     </div>
     <!-- order -->
     <div class="mail" id="mail">
         <div class="container">
-            <h3>Оформить заказ</h3>
+            <h3>Отправить заявку</h3>
             <p class="qui"><span>При заказе через сайт скидка <strong>5%</strong></span></p>
             <div class="mail-grids">
-                <form class="form-horizontal">
-
+                <form id="form-order" class="form-horizontal">
+                    {#name#}
                     <div class="form-group">
-                        <label for="name" class="col-sm-3 control-label">Имя *</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="">
+                        <label for="name" class="col-sm-4 control-label"><h4>Имя *</h4></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control no-border-radius" id="name" name="name" required>
                         </div>
                     </div>
-
+                    {#contact#}
                     <div class="form-group">
-                        <label for="name" class="col-sm-3 control-label">Контакт *</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Телефон или E-mail, или WhatsApp, или прочее">
+                        <label for="contact" class="col-sm-4 control-label"><h4>Контактная информация *</h4></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control no-border-radius" id="contact" name="contact" placeholder="Телефон или E-mail, или WhatsApp, или другое" required>
                         </div>
                     </div>
-
+                    {#type#}
                     <div class="form-group">
-                        <label for="type" class="col-sm-4 control-label">Вид изделия</label>
+                        <label for="type" class="col-sm-4 control-label"><h4>Вид изделия</h4></label>
+
                         <div class="col-sm-4">
-                            <div class="radio"><label><input type="radio" name="target" value="Технический план">Технический план</label></div>
-                            <div class="radio"><label><input type="radio" name="target" value="Акт обследования">Акт обследования</label></div>                                    <div class="radio">
-                                <label>
-                                    <input type="radio" name="target" value="Вынос границ земельного участка">
-                                    Вынос границ земельного участка
-                                </label>
+                            <div class="input-group">
+                                <span class="input-group-addon no-border-radius">
+                                    <input type="radio" id="type-1" name="type" value="Кружка">
+                                </span>
+                                <label class="form-control no-border-radius label-order" for="type-1">Кружка</label>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon no-border-radius">
+                                    <input type="radio" id="type-2" name="type" value="Игрушка из цветов">
+                                </span>
+                                <label class="form-control no-border-radius label-order" for="type-2">Игрушка из цветов</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon no-border-radius">
+                                    <input type="radio" id="type-3" name="type" value="Букет из мягких игрушек">
+                                </span>
+                                <label class="form-control no-border-radius label-order" for="type-3">Букет из мягких игрушек</label>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon no-border-radius">
+                                    <input type="radio" id="type-4" name="type" value="Сувенир их полимерной глины">
+                                </span>
+                                <label class="form-control no-border-radius label-order" for="type-4">Сувенир их полимерной глины</label>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon no-border-radius">
+                                    <input type="radio" id="type-5" name="type" value="Другое">
+                                </span>
+                                <input type="text" data-radio-id="type-5" class="input-radio form-control no-border-radius" value="Другое">
                             </div>
                         </div>
                     </div>
-
+                    {#description#}
                     <div class="form-group">
-                        <label for="description" class="col-sm-3 control-label">Описание</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="description" name="description" placeholder="">
+                        <label for="description" class="col-sm-4 control-label"><h4>Описание</h4></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control no-border-radius" id="description" name="description">
                         </div>
                     </div>
-
+                    {#submit#}
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-4">
-                            <button type="submit" class="btn btn-default">Отправить</button>
+                            <button id="send" type="submit" class="btn btn-info no-border-radius" style="width: 100%">Отправить</button>
                         </div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 text-center" id="success"></div>
                     </div>
                 </form>
             </div>
@@ -90,40 +120,50 @@
     <!-- js -->
     <script src="{{ asset('js/jquery-2.1.4.min.js') }}" type="text/javascript"></script>
     <!-- //js -->
-    <!-- start-smoth-scrolling -->
-    <script src="{{ asset('js/move-top.js') }}"></script>
-    <script src="{{ asset('js/easing.js') }}"></script>
-    <script>
-        jQuery(document).ready(function($) {
-            $(".scroll").click(function(event){
-                event.preventDefault();
-                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-            });
-        });
-    </script>
-    <!-- start-smoth-scrolling -->
     <!-- for bootstrap working -->
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <!-- //for bootstrap working -->
-    <!-- here stars scrolling icon -->
     <script>
-        $(document).ready(function() {
-            /*
-             var defaults = {
-             containerID: 'toTop', // fading element id
-             containerHoverID: 'toTopHover', // fading element hover id
-             scrollSpeed: 1200,
-             easingType: 'linear'
-             };
-             */
-
-            $().UItoTop({ easingType: 'easeOutQuart' });
+        $('#form-order').submit(function(e){
+            $.ajax({
+                data: $(this).serialize(),
+                beforeSend: function () {
+                    $('#success').html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>');
+                    $('#send').prop('disabled', true);
+                },
+                success: function (response) {
+                    if (response.status == 1) {
+                        $('#success').html('Ваша заявка успешно отправлена.');
+                    } else if (response.status == 0) {
+                        $('#success').html(response.error);
+                        $('#send').prop('disabled', false);
+                    } else {
+                        $('#success').html('Заявка не была отправлена. Пожалуйста, попробуйте еще раз!');
+                        $('#send').prop('disabled', false);
+                    }
+                },
+                error: function (e) {
+                    $('#success').html('Не удалось отправить Заявку. Пожалуйста, попробуйте позже!');
+                    $('#send').prop('disabled', false);
+                },
+                complete: function (done) {
+                    console.log('Finished');
+                },
+                type: 'POST',
+                url: '{{ url('sendOrder') }}',
+            });
+            e.preventDefault();
         });
-    </script>
-    <!-- //here ends scrolling icon -->
-    <script src="{{ asset('js/jquery.easy-gallery.js') }}"></script>
-    <script>
-        //init Gallery
-        $('.gallery').easyGallery();
+
+        $('.input-radio').change(function() {
+            var those = $(this);
+            var radioId = '#' + those.data('radio-id');
+            $(radioId).val(those.val());
+        });
+
+        $('.input-radio').click(function() {
+            var radioId = '#' + $(this).data('radio-id');
+            $(radioId).prop("checked", true);
+        });
     </script>
 {% endblock %}
