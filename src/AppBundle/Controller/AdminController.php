@@ -25,7 +25,8 @@ class AdminController extends Controller
 
         return $this->render('admin/index.html.twig', [
             'caption' => 'Посетители сегодня',
-            'visitors' => $visitors
+            'visitors' => $visitors,
+            'menu' => $this->menu()
         ]);
     }
 
@@ -46,7 +47,8 @@ class AdminController extends Controller
 
         return $this->render('admin/index.html.twig', [
             'caption' => 'Посетители вчера',
-            'visitors' => $visitors
+            'visitors' => $visitors,
+            'menu' => $this->menu()
         ]);
     }
 
@@ -64,7 +66,8 @@ class AdminController extends Controller
 
         return $this->render('admin/order.html.twig', [
             'caption' => 'Заявки с сайта',
-            'orders' => $orders
+            'orders' => $orders,
+            'menu' => $this->menu()
         ]);
     }
 
@@ -82,7 +85,20 @@ class AdminController extends Controller
 
         return $this->render('admin/mail.html.twig', [
             'caption' => 'Письма с сайта',
-            'mails' => $mails
+            'mails' => $mails,
+            'menu' => $this->menu()
         ]);
+    }
+
+    private function menu() {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Email');
+        $query = $repository->createQueryBuilder('m')
+            ->select('COUNT(m.id)')
+            ->where('m.status < 2')
+            ->getQuery();
+        $count = $query->getSingleScalarResult();
+        return [
+            'countMail' => $count
+        ];
     }
 }

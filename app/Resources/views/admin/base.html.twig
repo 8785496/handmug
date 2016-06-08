@@ -25,7 +25,7 @@
                 <li><a href="{{ url('admin') }}">Просмотры сегодня</a></li>
                 <li><a href="{{ url('yesterday') }}">Просмотры вчера</a></li>
                 <li><a href="{{ url('adminOrder') }}">Заявок <span class="badge"></span></a></li>
-                <li><a href="{{ url('adminMail') }}">Писем <span class="badge"></span></a></li>
+                <li><a href="{{ url('adminMail') }}">Писем <span class="badge">{{ menu.countMail }}</span></a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
