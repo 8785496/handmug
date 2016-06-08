@@ -56,15 +56,18 @@ body a:hover{
 }
 .logo h1 a{
 	font-size: 1.5em;
-    color:#fff;
+    /*color:#fff;*/
+    color: #212121;
     text-decoration: none;
     line-height: 0.5;
 }
 .logo h1 a span{
 	display: block;
-    font-size: .2em;
+    font-size: 0.3em;
     text-transform: uppercase;
-    letter-spacing: 13px;
+    /*letter-spacing: 13px;*/
+    letter-spacing: 7px;
+    padding-top: 10px;
     line-height: 1;
 }
 .mail-phone{
@@ -74,18 +77,23 @@ body a:hover{
 	display:inline-block;
 	margin-right:3em;
 	font-size:14px;
-	color:#fff;
+	/*color:#fff;*/
+    color: #212121;
+    font-weight: bold;
 }
 .mail-phone ul li a{
-	color:#fff;
+	/*color:#fff;*/
+    color: #212121;
 	text-decoration:none;
 }
 .mail-phone ul li a:hover{
-	color:#C5C5C5;
+	/*color:#C5C5C5;*/
+    color: #27A0D8;
 }
 .mail-phone ul li span {
     left: -1em;
-	color:#FFFFFF;
+	/*color:#FFFFFF;*/
+    color: #212121;
 }
 .banner-info ul li {
     display: inline-block;
@@ -102,11 +110,13 @@ body a:hover{
     text-align: center;
     font-family: 'Libre Baskerville', serif;
 	text-decoration:none;
-	color: #fff;
-    background: rgba(255, 255, 255, 0.4);
+	/*color: #fff;*/
+    color: #212121;
+    background: rgba(255, 255, 255, 0.7);
 }
 .banner-info ul  li.active a {
     color: #fff;
+    /*color: #212121;*/
     background-color:rgba(39, 160, 216, 0.67);
 	display:inline-block;
 }
