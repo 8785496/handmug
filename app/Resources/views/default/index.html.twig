@@ -27,7 +27,9 @@
 
                     <div class="services-grid1">
                         <div class="col-md-8 services-grid-left">
-                            <h4>кружки с неведомым узором:)</h4>
+                            <a href="{{ url('order') }}"  data-toggle="tooltip" data-placement="top" title="Узнать стоимость">
+                                <h4>кружки с неведомым узором:)</h4>
+                            </a>
                             <p>Itaque earum rerum hic tenetur a sapiente
                                 delectus, ut aut reiciendis voluptatibus maiores alias consequatur
                                 aut perferendis doloribus asperiores repellat.</p>
@@ -35,7 +37,6 @@
                         <div class="col-md-4 services-grid-right">
                             <div class="services-grid-right-grid hvr-radial-out">
                                 <span class="fa fa-coffee" aria-hidden="true" style="position: relative"></span>
-                                {#<span class="glyphicon glyphicon-grain" aria-hidden="true"></span>#}
                             </div>
                         </div>
                         <div class="clearfix"> </div>
@@ -43,7 +44,9 @@
 
                     <div class="services-grid1">
                         <div class="col-md-8 services-grid-left">
-                            <h4>игрушки из цветов</h4>
+                            <a href="{{ url('order') }}"  data-toggle="tooltip" data-placement="top" title="Узнать стоимость">
+                                <h4>игрушки из цветов</h4>
+                            </a>
                             <p>Itaque earum rerum hic tenetur a sapiente
                                 delectus, ut aut reiciendis voluptatibus maiores alias consequatur
                                 aut perferendis doloribus asperiores repellat.</p>
@@ -66,7 +69,9 @@
                             </div>
                         </div>
                         <div class="col-md-8 services-grid-left services-grid-left1">
-                            <h4>букеты из мягких игрушек</h4>
+                            <a href="{{ url('order') }}"  data-toggle="tooltip" data-placement="top" title="Узнать стоимость">
+                                <h4>букеты из мягких игрушек</h4>
+                            </a>
                             <p>Itaque earum rerum hic tenetur a sapiente
                                 delectus, ut aut reiciendis voluptatibus maiores alias consequatur
                                 aut perferendis doloribus asperiores repellat.</p>
@@ -81,7 +86,9 @@
                             </div>
                         </div>
                         <div class="col-md-8 services-grid-left services-grid-left1">
-                            <h4>сувениры из полимерной глины</h4>
+                            <a href="{{ url('order') }}"  data-toggle="tooltip" data-placement="top" title="Узнать стоимость">
+                                <h4>сувениры из полимерной глины</h4>
+                            </a>
                             <p>Itaque earum rerum hic tenetur a sapiente
                                 delectus, ut aut reiciendis voluptatibus maiores alias consequatur
                                 aut perferendis doloribus asperiores repellat.</p>
@@ -247,6 +254,8 @@
              */
 
             $().UItoTop({ easingType: 'easeOutQuart' });
+
+            $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
     <!-- //here ends scrolling icon -->
