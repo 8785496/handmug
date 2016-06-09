@@ -25,8 +25,7 @@ class AdminController extends Controller
 
         return $this->render('admin/index.html.twig', [
             'caption' => 'Посетители сегодня',
-            'visitors' => $visitors,
-            'menu' => $this->menu()
+            'visitors' => $visitors
         ]);
     }
 
@@ -47,8 +46,7 @@ class AdminController extends Controller
 
         return $this->render('admin/index.html.twig', [
             'caption' => 'Посетители вчера',
-            'visitors' => $visitors,
-            'menu' => $this->menu()
+            'visitors' => $visitors
         ]);
     }
 
@@ -66,8 +64,7 @@ class AdminController extends Controller
 
         return $this->render('admin/order.html.twig', [
             'caption' => 'Заявки с сайта',
-            'orders' => $orders,
-            'menu' => $this->menu()
+            'orders' => $orders
         ]);
     }
 
@@ -85,20 +82,27 @@ class AdminController extends Controller
 
         return $this->render('admin/mail.html.twig', [
             'caption' => 'Письма с сайта',
-            'mails' => $mails,
-            'menu' => $this->menu()
+            'mails' => $mails
         ]);
     }
 
-    private function menu() {
+    public function menuAction($uri) {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Email');
         $query = $repository->createQueryBuilder('m')
             ->select('COUNT(m.id)')
-            ->where('m.status < 2')
             ->getQuery();
-        $count = $query->getSingleScalarResult();
-        return [
-            'countMail' => $count
-        ];
+        $countMail = $query->getSingleScalarResult();
+
+        $repositoryOrder = $this->getDoctrine()->getRepository('AppBundle:Request');
+        $queryOrder = $repositoryOrder->createQueryBuilder('o')
+            ->select('COUNT(o.id)')
+            ->getQuery();
+        $countOrder = $queryOrder->getSingleScalarResult();
+
+        return $this->render('admin/menu.html.twig', [
+            'countMail' => $countMail,
+            'countOrder' => $countOrder,
+            'uri' => $uri
+        ]);
     }
 }
