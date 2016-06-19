@@ -4,7 +4,7 @@ parameters:
     database_port: null
     database_name: handmug
     database_user: root
-    database_password: null
+    database_password: root
     mailer_transport: smtp
     mailer_host: smtp.yandex.ru
     mailer_user: mail@handmug.ru

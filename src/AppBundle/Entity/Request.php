@@ -43,6 +43,13 @@ class Request
     /**
      * @var string
      *
+     * @ORM\Column(name="model", type="string", length=128, nullable=true)
+     */
+    private $model;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="type", type="string", length=64, nullable=true)
      */
     private $type;
@@ -220,5 +227,29 @@ class Request
     public function getIp()
     {
         return $this->ip;
+    }
+
+    /**
+     * Set model
+     *
+     * @param string $model
+     *
+     * @return Request
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Get model
+     *
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
     }
 }

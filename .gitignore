@@ -1,10 +1,12 @@
 .idea/
 var/*
 vendor/
-web/css/*
-web/fonts/
-web/images/
-web/js/
+#web/css/*
+#web/fonts/
+#web/images/
+#web/js/
+web/bundles/
 !bootstrap.php.cache
 !SymfonyRequirements.php
 !web/css/style.css
+*~

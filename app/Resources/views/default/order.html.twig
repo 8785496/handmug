@@ -36,48 +36,58 @@
                             <input type="text" class="form-control no-border-radius" id="contact" name="contact" placeholder="Телефон или E-mail, или WhatsApp, или другое" required>
                         </div>
                     </div>
-                    {#type#}
-                    <div class="form-group">
-                        <label for="type" class="col-sm-4 control-label"><h4>Вид изделия</h4></label>
-
-                        <div class="col-sm-4">
-                            <div class="input-group">
-                                <span class="input-group-addon no-border-radius">
-                                    <input type="radio" id="type-1" name="type" value="Кружка">
-                                </span>
-                                <label class="form-control no-border-radius label-order" for="type-1">Кружка</label>
-                            </div>
-
-                            <div class="input-group">
-                                <span class="input-group-addon no-border-radius">
-                                    <input type="radio" id="type-2" name="type" value="Игрушка из цветов">
-                                </span>
-                                <label class="form-control no-border-radius label-order" for="type-2">Игрушка из цветов</label>
+                    {% if model|length > 0 %}
+                        {# model #}
+                        <div class="form-group">
+                            <label for="model" class="col-sm-4 control-label"><h4>Модель</h4></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control no-border-radius" id="model" name="model" placeholder="Из каталога" value="{{ model }}">
                             </div>
                         </div>
+                        {# //model #}
+                    {% else %}
+                        {# type #}
+                        <div class="form-group">
+                            <label for="type" class="col-sm-4 control-label"><h4>Вид изделия</h4></label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon no-border-radius">
+                                            <input type="radio" id="type-1" name="type" value="Кружка">
+                                        </span>
+                                        <label class="form-control no-border-radius label-order" for="type-1">Кружка</label>
+                                    </div>
 
-                        <div class="col-sm-4">
-                            <div class="input-group">
-                                <span class="input-group-addon no-border-radius">
-                                    <input type="radio" id="type-3" name="type" value="Букет из мягких игрушек">
-                                </span>
-                                <label class="form-control no-border-radius label-order" for="type-3">Букет из мягких игрушек</label>
-                            </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon no-border-radius">
+                                            <input type="radio" id="type-2" name="type" value="Игрушка из цветов">
+                                        </span>
+                                        <label class="form-control no-border-radius label-order" for="type-2">Игрушка из цветов</label>
+                                    </div>
+                                </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon no-border-radius">
+                                        <input type="radio" id="type-3" name="type" value="Букет из мягких игрушек">
+                                    </span>
+                                    <label class="form-control no-border-radius label-order" for="type-3">Букет из мягких игрушек</label>
+                                </div>
 
-                            <div class="input-group">
-                                <span class="input-group-addon no-border-radius">
-                                    <input type="radio" id="type-4" name="type" value="Сувенир их полимерной глины">
-                                </span>
-                                <label class="form-control no-border-radius label-order" for="type-4">Сувенир их полимерной глины</label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon no-border-radius">
-                                    <input type="radio" id="type-5" name="type" value="Другое">
-                                </span>
-                                <input type="text" data-radio-id="type-5" class="input-radio form-control no-border-radius" value="Другое">
+                                <div class="input-group">
+                                    <span class="input-group-addon no-border-radius">
+                                        <input type="radio" id="type-4" name="type" value="Сувенир их полимерной глины">
+                                    </span>
+                                    <label class="form-control no-border-radius label-order" for="type-4">Сувенир их полимерной глины</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon no-border-radius">
+                                        <input type="radio" id="type-5" name="type" value="Другое">
+                                    </span>
+                                    <input type="text" data-radio-id="type-5" class="input-radio form-control no-border-radius" value="Другое">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        {# //type #}
+                    {% endif %}
                     {#description#}
                     <div class="form-group">
                         <label for="description" class="col-sm-4 control-label"><h4>Описание</h4></label>
@@ -102,27 +112,15 @@
 {% block footernav %}
     <ul class="footer-nav">
         <li><a href="{{ url('homepage') }}">Главная</a></li>
-        <li><a href="{{ url('homepage') }}#services">Услуги</a></li>
+        <li><a href="//catalog.handmug.ru">Каталог</a></li>
         <li><a href="{{ url('homepage') }}#gallery">Галерея</a></li>
         <li><a href="{{ url('homepage') }}#mail">Контакты</a></li>
     </ul>
 {% endblock %}
 
-{% block stylesheets %}
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" media="all">
-    <link href="{{ asset('css/jquery.easy-gallery.css') }}" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic" rel="stylesheet" type="text/css">
-{% endblock %}
+{% block stylesheets %}{% endblock %}
 
 {% block javascripts %}
-    <!-- js -->
-    <script src="{{ asset('js/jquery-2.1.4.min.js') }}" type="text/javascript"></script>
-    <!-- //js -->
-    <!-- for bootstrap working -->
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-    <!-- //for bootstrap working -->
     <script>
         $('#form-order').submit(function(e){
             $.ajax({

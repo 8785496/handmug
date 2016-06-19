@@ -24,13 +24,15 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/order", name="order")
+     * @Route("/order/{model}", defaults={"model" = ""}, name="order")
      */
-    public function orderAction(Request $request)
+    public function orderAction(Request $request, $model)
     {
         $this->saveVisitor($request);
 
-        return $this->render('default/order.html.twig', []);
+        return $this->render('default/order.html.twig', [
+            'model' => urldecode($model)
+        ]);
     }
 
     /**
@@ -42,6 +44,7 @@ class DefaultController extends Controller
         $order = (new Order())
             ->setName($request->request->get('name'))
             ->setContact($request->request->get('contact'))
+            ->setModel($request->request->get('model'))
             ->setType($request->request->get('type'))
             ->setDescription($request->request->get('description'))
             ->setIp($request->getClientIp())

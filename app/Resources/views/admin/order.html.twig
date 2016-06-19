@@ -5,7 +5,7 @@
     <caption>{{ caption }}</caption>
     <thead>
     <tr>
-        <th>ID</th><th>Дата</th><th>Имя</th><th>Контакт</th><th>Тип</th><th>Описание</th><th>IP</th>
+        <th>ID</th><th>Дата</th><th>Имя</th><th>Контакт</th><th>Модель</th><th>Тип</th><th>Описание</th><th>IP</th>
     </tr>
     </thead>
     <tbody>
@@ -15,6 +15,7 @@
             <td>{{ order.time|date("H:i:s") }}</td>
             <td>{{ order.name }}</td>
             <td>{{ order.contact }}</td>
+            <td>{{ order.model }}</td>
             <td>{{ order.type }}</td>
             {% if order.description|length > 20 %}
                 <td title="{{ order.description }}">{{ order.description[:17] }}...</td>
