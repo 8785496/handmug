@@ -5,5 +5,4 @@ app/config/parameters.yml
 web/bundles/
 !bootstrap.php.cache
 !SymfonyRequirements.php
-!web/css/style.css
 *~

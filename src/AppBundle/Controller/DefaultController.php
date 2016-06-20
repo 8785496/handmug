@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Entity\Email;
@@ -48,7 +49,7 @@ class DefaultController extends Controller
             ->setType($request->request->get('type'))
             ->setDescription($request->request->get('description'))
             ->setIp($request->getClientIp())
-            ->setTime(new \DateTime());
+            ->setTime(new \DateTime("now",new \DateTimeZone("Asia/Novosibirsk")));
 
         $validator = $this->get('validator');
         $errors = $validator->validate($order);
@@ -77,7 +78,7 @@ class DefaultController extends Controller
         $email->setName($request->request->get('name'));
         $email->setSubject('Email from site Handmug.ru');
         $email->setBody($request->request->get('message'));
-        $email->setTime(new \DateTime());
+        $email->setTime(new \DateTime("now",new \DateTimeZone("Asia/Novosibirsk")));
         $email->setIp($request->getClientIp());
 
         $validator = $this->get('validator');
@@ -96,13 +97,23 @@ class DefaultController extends Controller
         return new JsonResponse(['status' => 1]);
     }
 
+    /**
+     * @Route("/counter", name="counter")
+     */
+    public function counterAction(Request $request)
+    {
+        $this->saveVisitor($request);
+        $fileName = __DIR__ . "/../Resources/counter.png";
+        return new BinaryFileResponse($fileName);
+    }
+
     private function saveVisitor(Request $request) {
         $visitor = new Visitor();
         $visitor->setIp($request->getClientIp());
-        $visitor->setUri($request->getUri());
+        $visitor->setUri(urldecode($request->getUri()));
         $visitor->setAgent($request->headers->get('User-Agent'));
         $visitor->setReferer($request->headers->get('referer'));
-        $visitor->setTime(new \DateTime());
+        $visitor->setTime(new \DateTime("now",new \DateTimeZone("Asia/Novosibirsk")));
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($visitor);

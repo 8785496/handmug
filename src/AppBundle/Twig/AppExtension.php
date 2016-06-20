@@ -15,6 +15,7 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('agent', array($this, 'agentFilter')),
+            new \Twig_SimpleFilter('urldecode', array($this, 'urlFilter'))
         );
     }
 
@@ -28,6 +29,10 @@ class AppExtension extends \Twig_Extension
     public function getName()
     {
         return 'app_extension';
+    }
+
+    public function urlFilter($url) {
+        return urldecode($url);
     }
 
     private function getOS($user_agent) {
