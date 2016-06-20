@@ -23,6 +23,13 @@ class Request
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="status", type="integer", nullable=true)
+     */
+    private $status;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=128)
@@ -251,5 +258,29 @@ class Request
     public function getModel()
     {
         return $this->model;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Request
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
