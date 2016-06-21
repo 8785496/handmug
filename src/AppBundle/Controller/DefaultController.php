@@ -102,9 +102,13 @@ class DefaultController extends Controller
      */
     public function counterAction(Request $request)
     {
-        $this->saveVisitor($request);
+        $uri = $request->get('uri');
+        $this->saveVisitorUri($request, $uri);
         $fileName = __DIR__ . "/../Resources/counter.png";
-        return new BinaryFileResponse($fileName);
+        return new BinaryFileResponse($fileName, 200, [
+            'cache-control' => 'no-cache, no-store, must-revalidate',
+            'pragma' => 'no-cache'
+        ]);
     }
 
     private function saveVisitor(Request $request) {
@@ -113,6 +117,18 @@ class DefaultController extends Controller
         $visitor->setUri(urldecode($request->getUri()));
         $visitor->setAgent($request->headers->get('User-Agent'));
         $visitor->setReferer($request->headers->get('referer'));
+        $visitor->setTime(new \DateTime("now",new \DateTimeZone("Asia/Novosibirsk")));
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($visitor);
+        $em->flush();
+    }
+
+    public function saveVisitorUri(Request $request, $uri) {
+        $visitor = new Visitor();
+        $visitor->setIp($request->getClientIp());
+        $visitor->setUri(urldecode($uri));
+        $visitor->setAgent($request->headers->get('User-Agent'));
         $visitor->setTime(new \DateTime("now",new \DateTimeZone("Asia/Novosibirsk")));
 
         $em = $this->getDoctrine()->getManager();
