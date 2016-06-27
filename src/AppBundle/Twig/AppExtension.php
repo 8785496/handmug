@@ -15,7 +15,8 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('agent', array($this, 'agentFilter')),
-            new \Twig_SimpleFilter('urldecode', array($this, 'urlFilter'))
+            new \Twig_SimpleFilter('urldecode', array($this, 'urlFilter')),
+            new \Twig_SimpleFilter('cityName', array($this, 'cityFilter'))
         );
     }
 
@@ -33,6 +34,16 @@ class AppExtension extends \Twig_Extension
 
     public function urlFilter($url) {
         return urldecode($url);
+    }
+
+    public function cityFilter($city) {
+        if ($city == 'kemerovo') {
+            return 'Кемерово';
+        } else if ($city == 'novosibirsk') {
+            return 'Новосибирск';
+        } else {
+            return 'Кемерово, Новосибирск';
+        }
     }
 
     private function getOS($user_agent) {

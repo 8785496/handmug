@@ -15,13 +15,16 @@ use AppBundle\Entity\Request as Order;
 class DefaultController extends Controller
 {
     /**
+     * @Route("/", host="{city}.handmug.ru")
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $city = null)
     {
         $this->saveVisitor($request);
 
-        return $this->render('default/index.html.twig', []);
+        return $this->render('default/index.html.twig', [
+            'city' => $city
+        ]);
     }
 
     /**
