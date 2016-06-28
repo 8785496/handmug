@@ -30,12 +30,13 @@ class DefaultController extends Controller
     /**
      * @Route("/order/{model}", defaults={"model" = ""}, name="order")
      */
-    public function orderAction(Request $request, $model)
+    public function orderAction(Request $request, $model, $city = null)
     {
         $this->saveVisitor($request);
 
         return $this->render('default/order.html.twig', [
-            'model' => urldecode($model)
+            'model' => urldecode($model),
+            'city' => $city
         ]);
     }
 
@@ -52,7 +53,7 @@ class DefaultController extends Controller
             ->setType($request->request->get('type'))
             ->setDescription($request->request->get('description'))
             ->setIp($request->getClientIp())
-            ->setTime(new \DateTime("now",new \DateTimeZone("Asia/Novosibirsk")));
+            ->setTime(new \DateTime());
 
         $validator = $this->get('validator');
         $errors = $validator->validate($order);
@@ -76,13 +77,13 @@ class DefaultController extends Controller
      */
     public function sendMailAction(Request $request)
     {
-        $email = new Email();
-        $email->setEmail($request->request->get('email'));
-        $email->setName($request->request->get('name'));
-        $email->setSubject('Email from site Handmug.ru');
-        $email->setBody($request->request->get('message'));
-        $email->setTime(new \DateTime("now",new \DateTimeZone("Asia/Novosibirsk")));
-        $email->setIp($request->getClientIp());
+        $email = (new Email())
+            ->setEmail($request->request->get('email'))
+            ->setName($request->request->get('name'))
+            ->setSubject('Email from site Handmug.ru')
+            ->setBody($request->request->get('message'))
+            ->setTime(new \DateTime())
+            ->setIp($request->getClientIp());
 
         $validator = $this->get('validator');
         $errors = $validator->validate($email);
@@ -106,7 +107,7 @@ class DefaultController extends Controller
     public function counterAction(Request $request)
     {
         $uri = $request->get('uri');
-        $this->saveVisitorUri($request, $uri);
+        $this->saveVisitor($request, $uri);
         $fileName = __DIR__ . "/../Resources/counter.png";
         return new BinaryFileResponse($fileName, 200, [
             'cache-control' => 'no-cache, no-store, must-revalidate',
@@ -114,25 +115,22 @@ class DefaultController extends Controller
         ]);
     }
 
-    private function saveVisitor(Request $request) {
-        $visitor = new Visitor();
-        $visitor->setIp($request->getClientIp());
-        $visitor->setUri(urldecode($request->getUri()));
-        $visitor->setAgent($request->headers->get('User-Agent'));
-        $visitor->setReferer($request->headers->get('referer'));
-        $visitor->setTime(new \DateTime("now",new \DateTimeZone("Asia/Novosibirsk")));
+    private function saveVisitor(Request $request, $uri = null) {
+        $filterAgent = '/(google|yandex|bing)/i';
+        $userAgent = $request->headers->get('User-Agent');
+        if (preg_match($filterAgent, $userAgent)) {
+            return;
+        }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($visitor);
-        $em->flush();
-    }
-
-    public function saveVisitorUri(Request $request, $uri) {
-        $visitor = new Visitor();
-        $visitor->setIp($request->getClientIp());
-        $visitor->setUri(urldecode($uri));
-        $visitor->setAgent($request->headers->get('User-Agent'));
-        $visitor->setTime(new \DateTime("now",new \DateTimeZone("Asia/Novosibirsk")));
+        if (is_null($uri)) {
+            $uri = $request->getUri();
+        }
+        $visitor = (new Visitor())
+            ->setIp($request->getClientIp())
+            ->setUri(urldecode($uri))
+            ->setAgent($userAgent)
+            ->setReferer($request->headers->get('referer'))
+            ->setTime(new \DateTime());
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($visitor);
