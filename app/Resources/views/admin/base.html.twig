@@ -8,7 +8,7 @@
 </head>
 
 <body>
-{{ render(controller('AppBundle:Admin:menu', {'uri': app.request.getUri})) }}
+{{ render(controller('AppBundle:Admin:menu', {'uri': app.request.getUri, 'ip': app.request.server.get('REMOTE_ADDR')})) }}
 <div class="container">
     {% block container %}{% endblock %}
 </div>

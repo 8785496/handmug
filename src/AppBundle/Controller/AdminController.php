@@ -86,7 +86,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function menuAction($uri) {
+    public function menuAction($uri, $ip) {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Email');
         $query = $repository->createQueryBuilder('m')
             ->select('COUNT(m.id)')
@@ -102,7 +102,8 @@ class AdminController extends Controller
         return $this->render('admin/menu.html.twig', [
             'countMail' => $countMail,
             'countOrder' => $countOrder,
-            'uri' => $uri
+            'uri' => $uri,
+            'ip' => $ip
         ]);
     }
 }
