@@ -117,8 +117,16 @@ class DefaultController extends Controller
 
     private function saveVisitor(Request $request, $uri = null) {
         $filterAgent = '/(google|yandex|bing)/i';
+        $filterIp = [
+            '178.137.164.15',
+            '46.118.159.221',
+            '176.8.89.183'
+        ];
         $userAgent = $request->headers->get('User-Agent');
+        $ip = $request->getClientIp();
         if (preg_match($filterAgent, $userAgent)) {
+            return;
+        } else if (in_array($ip, $filterIp) == true) {
             return;
         }
 
@@ -126,7 +134,7 @@ class DefaultController extends Controller
             $uri = $request->getUri();
         }
         $visitor = (new Visitor())
-            ->setIp($request->getClientIp())
+            ->setIp($ip)
             ->setUri(urldecode($uri))
             ->setAgent($userAgent)
             ->setReferer($request->headers->get('referer'))
