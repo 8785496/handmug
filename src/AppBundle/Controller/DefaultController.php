@@ -120,7 +120,8 @@ class DefaultController extends Controller
         $filterIp = [
             '178.137.164.15',
             '46.118.159.221',
-            '176.8.89.183'
+            '176.8.89.183',
+            '37.229.252.195'
         ];
         $userAgent = $request->headers->get('User-Agent');
         $ip = $request->getClientIp();
