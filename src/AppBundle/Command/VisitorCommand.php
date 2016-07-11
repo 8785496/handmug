@@ -37,13 +37,22 @@ class VisitorCommand extends ContainerAwareCommand
             ->where('v.id = :id')
             ->getQuery();
 
+        $qDelete = $repository->createQueryBuilder('v')
+            ->delete()
+            ->where('v.id = :id')
+            ->getQuery();
+
+        $filterLocation = '/(Lviv|Kiev)/';
+
         foreach ($visitors as $visitor) {
             $json = file_get_contents('http://ip-api.com/json/' . $visitor['ip']);
             $result = json_decode($json, true);
+            $city = null;
 
             if (!array_key_exists('status', $result)) {
                 continue;
             } else if ($result['status'] == 'success') {
+                $city = $result['city'];
                 $location = $result['city'] . ', ' . $result['regionName'];
             } else if ($result['status'] == 'fail') {
                 $location = $result['message'];
@@ -51,10 +60,16 @@ class VisitorCommand extends ContainerAwareCommand
                 $location = $json;
             }
 
-            $qUpdate
-                ->setParameter('location', $location)
-                ->setParameter('id', $visitor['id'])
-                ->execute();
+            if (!is_null($city) && preg_match($filterLocation, $city)) {
+                $qDelete
+                    ->setParameter('id', $visitor['id'])
+                    ->execute();
+            } else {
+                $qUpdate
+                    ->setParameter('location', $location)
+                    ->setParameter('id', $visitor['id'])
+                    ->execute();
+            }
         }
 
         $output->writeln(count($visitors));
